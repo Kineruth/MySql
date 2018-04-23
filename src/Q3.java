@@ -11,16 +11,13 @@ public class Q3 {
 
 	public static void topTenPatients() {
 		try {
-			Connection myConn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/ck?autoReconnect=true&useSSL=false", "root", "MyPass");
+			Connection myConn = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/ck?autoReconnect=true&useSSL=false", "root", "MyPass");
 			Statement myStmt = myConn.createStatement();
 			int myRs = myStmt.executeUpdate("CREATE VIEW top_ten_patients AS\r\n"
 					+ "SELECT patient_name FROM patients, queue, queue_reserved \r\n"
 					+ "ORDER BY ( time - queue_reserved.queue_time  )  limit 10; ");
-		
-//			while (myRs.next()) {
-//				System.out.println(myRs.getString("patient_name"));
-//			}
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
