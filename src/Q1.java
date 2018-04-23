@@ -38,7 +38,8 @@ public class Q1 {
 					.executeQuery("SELECT patient_name, queue_time FROM doctors, patients, queue_reserved\r\n"
 							+ "WHERE doctor_name = \"" + doctorName + "\"\r\n"
 							+ "AND doctors.doctor_id = queue_reserved.doctor_id \r\n"
-							+ "AND patients.patient_id = queue_reserved.patient_id ");
+							+ "AND patients.patient_id = queue_reserved.patient_id\r\n" + 
+							"ORDER BY queue_time; ");
 
 			while (myRs.next()) {
 				System.out.println(myRs.getString("patient_name") + "  " + myRs.getString("queue_time"));
